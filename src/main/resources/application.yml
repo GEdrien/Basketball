@@ -1,0 +1,13 @@
+server:
+  port: 5055
+
+spring:
+  datasource:
+    username: root
+    password: MyRootPassword55
+    url: jdbc:mysql://localhost:3306/test_player_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
