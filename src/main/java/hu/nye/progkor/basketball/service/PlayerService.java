@@ -15,7 +15,7 @@ public interface PlayerService {
 
     Player addPlayer(Player player, String name);
 
-    Player updatePlayer(Player player, String contraction);
+    Player updatePlayer(Player player, Long id);
 
     void deletePlayer(Long id);
 }

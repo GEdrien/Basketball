@@ -91,27 +91,27 @@ public class TeamServiceImplTest {
         assertThrows(GlobalException.class, () -> teamService.deleteTeam(existingTeam.getId()));
     }
 
-    /*
     @Test
-    public void testUpdateTeam_NonExsitingTeamId_UpdateTeam() {
+    public void testUpdateTeam_ExsitingTeamId_UpdateTeam() {
         Team existingOldTeam = new Team();
         existingOldTeam.setId(1L);
         existingOldTeam.setName("Boston Celtics");
         existingOldTeam.setHeadCoach("Joe Mazulla");
-        Team newTeam = new Team();
-        newTeam.setId(1L);
-        newTeam.setName("Golden State Warriors");
-        newTeam.setHeadCoach("Steve Kerr");
-        when(teamRepositoryMock.findById(existingOldTeam.getId())).thenReturn(Optional.of(existingOldTeam));
-        when(teamRepositoryMock.save(newTeam)).thenReturn(newTeam);
+        Team updatedTeam = new Team();
+        updatedTeam.setName("Golden State Warriors");
+        updatedTeam.setHeadCoach("Steve Kerr");
+        when(teamRepositoryMock.findById(anyLong())).thenReturn(Optional.of(existingOldTeam));
+        when(teamRepositoryMock.save(any(Team.class))).thenReturn(updatedTeam);
 
-        Team updatedTeam = teamService.updateTeam(newTeam, existingOldTeam.getId());
+        Team result = teamService.updateTeam(updatedTeam, existingOldTeam.getId());
 
-        //assertNotNull(updatedTeam);
-        //assertEquals("Golden State Warriors", updatedTeam.getName());
-        //assertEquals("Steve Kerr", updatedTeam.getHeadCoach());
-        verify(teamRepositoryMock).save(newTeam);
-    }*/
+        assertNotNull(result);
+        assertEquals("Golden State Warriors", result.getName());
+        assertEquals("Steve Kerr", result.getHeadCoach());
+
+        verify(teamRepositoryMock).findById(anyLong());
+        verify(teamRepositoryMock).save(any(Team.class));
+    }
 
     @Test
     public void testUpdateTeam_ExistingTeamId_ThrowException() {

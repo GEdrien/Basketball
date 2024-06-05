@@ -62,9 +62,22 @@ public class PlayerServiceImpl implements  PlayerService {
     }
 
     @Override
-    public Player updatePlayer(Player player, String contraction) {
-        return player;
-        //TODO I need to work in this
+    public Player updatePlayer(Player player, Long id) {
+        Optional<Player> optionalPlayer = playerRepository.findById(id);
+        if (optionalPlayer.isPresent()) {
+            Player oldPlayer = optionalPlayer.get();
+            oldPlayer.setFirstName(player.getFirstName());
+            oldPlayer.setLastName(player.getLastName());
+            oldPlayer.setAge(player.getAge());
+            oldPlayer.setCountry(player.getCountry());
+            oldPlayer.setPost(player.getPost());
+            oldPlayer.setPpg(player.getPpg());
+            oldPlayer.setApg(player.getApg());
+            oldPlayer.setRpg(player.getRpg());
+            oldPlayer.setPie(player.getPie());
+            return playerRepository.save(oldPlayer);
+        }
+        throw new GlobalException(playerNotFoundMessage + id);
     }
 
     @Override
