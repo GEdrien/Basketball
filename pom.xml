@@ -94,6 +94,7 @@
 						<exclude>hu\nye\progkor\basketball\controller\**</exclude>
 						<exclude>hu\nye\progkor\basketball\BasketballApplication.class</exclude>
 						<exclude>hu\nye\progkor\basketball\repository\**</exclude>
+						<exclude>hu\nye\progkor\basketball\exception\**</exclude>
 						<exclude>*Test</exclude>
 					</excludes>
 					<rules>
@@ -103,12 +104,12 @@
 								<limit>
 									<counter>LINE</counter>
 									<value>COVEREDRATIO</value>
-									<minimum>40%</minimum>
+									<minimum>60%</minimum>
 								</limit>
 								<limit>
 									<counter>BRANCH</counter>
 									<value>COVEREDRATIO</value>
-									<minimum>40%</minimum>
+									<minimum>60%</minimum>
 								</limit>
 							</limits>
 						</rule>
